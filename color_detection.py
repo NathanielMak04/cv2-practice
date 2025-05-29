@@ -25,6 +25,7 @@ while True:
     v_min = cv2.getTrackbarPos("Val Min", "trackbar")
     v_max = cv2.getTrackbarPos("Val Max", "trackbar")
     print(h_min, h_max, s_min, s_max, v_min, v_max)
+    mask = cv2.inRange(imgHSV, (h_min, s_min, v_min), (h_max, s_max, v_max))
     
 
 
@@ -40,5 +41,5 @@ upper_blue = np.array([130,255,255])
 cv2.imshow("Image", img)
 cv2.imshow("Image HSV", imgHSV)
 
-cv2.waitKey(0)
+cv2.waitKey(1)
 
