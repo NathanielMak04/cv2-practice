@@ -4,6 +4,15 @@ import numpy as np
 def empty(a):
     pass
 
+# initialize video capture
+frameWidth = 640
+frameHeight = 480
+cap = cv2.VideoCapture(0)
+cap.set(3, frameWidth)
+cap.set(4, frameHeight)
+cap.set (10, 150)
+
+
 # create trackbar window
 cv2.namedWindow("trackbar")
 cv2.resizeWindow("trackbar",640, 240)
@@ -16,9 +25,9 @@ cv2.createTrackbar("Val Max", "trackbar", 255, 255, empty)
 
 while True:
     # read image
-    img = cv2.imread("images/f22.jpg")
-    if img is None:
-        print("Error: Could not load image")
+    success, img = cap.read()
+    cv2.imshow("capture", img)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
     
     # convert to HSV
@@ -36,7 +45,6 @@ while True:
     mask = cv2.inRange(imgHSV, (h_min, s_min, v_min), (h_max, s_max, v_max)) # filter to show which pixels are in the range; white pixels are in the range; black pixels are not in the range
     
     # Show images
-    cv2.imshow("Image", img)
     cv2.imshow("Image HSV", imgHSV)
     cv2.imshow("Mask", mask)
     
