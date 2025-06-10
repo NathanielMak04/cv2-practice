@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import numpy as np
 frameWidth = 640
 frameHeight = 480
 cap = cv2.VideoCapture(0)
@@ -22,5 +23,3 @@ while True:
     cv2.imshow("capture", img)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-
-
